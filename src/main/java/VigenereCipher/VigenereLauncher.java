@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class VigenereLauncher {
 
     private static Scanner scanner;
+    private static VigenereCore core;
 
     public static void main(String[] args) {
         int input;
@@ -16,26 +17,35 @@ public class VigenereLauncher {
     }
 
     private static void init(){
+        clearConsole();
         scanner = new Scanner(System.in);
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
         System.out.println("=====================================================================");
-        System.out.println(
-                "░█▀▀░▀█▀░█▀▀░█▀▄░█▀█░█▀▄░█▀█░█▀▄    ░█░█░▀█▀░█▀▀░█▀▀░█▀█░█▀▀░█▀▄░█▀▀\n" +
-                "░█░░░░█░░█▀▀░█▀▄░█▀█░█░█░█░█░█▀▄    ░▀▄▀░░█░░█░█░█▀▀░█░█░█▀▀░█▀▄░█▀▀\n" +
-                "░▀▀▀░▀▀▀░▀░░░▀░▀░▀░▀░▀▀░░▀▀▀░▀░▀    ░░▀░░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀▀"
-        );
+        System.out.println("""
+                ░█▀▀░▀█▀░█▀▀░█▀▄░█▀█░█▀▄░█▀█░█▀▄    ░█░█░▀█▀░█▀▀░█▀▀░█▀█░█▀▀░█▀▄░█▀▀
+                ░█░░░░█░░█▀▀░█▀▄░█▀█░█░█░█░█░█▀▄    ░▀▄▀░░█░░█░█░█▀▀░█░█░█▀▀░█▀▄░█▀▀
+                ░▀▀▀░▀▀▀░▀░░░▀░▀░▀░▀░▀▀░░▀▀▀░▀░▀    ░░▀░░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀▀
+                """);
         System.out.println("=====================================================================");
         System.out.println("1 - CIFRAR");
         System.out.println("2 - DECIFRAR");
-        System.out.println("2 - ENCERRAR");
+        System.out.println("0 - ENCERRAR");
         System.out.println("=====================================================================");
+    }
+
+    private static void clearConsole(){
+        for (int i = 0; i < 30; i++) {
+            System.out.println();
+        }
     }
 
     private static void getUserOption(int option){
         switch (option){
             case 1:
-                System.out.println("CIFRANDO..");
+                System.out.println("INSIRA A MENSAGEM A SER CIFRADA..");
+                String userMessage = scanner.nextLine();
+                System.out.println("INSIRA SUA CHAVE");
+                String userKey = scanner.nextLine();
+                core.encryt();
                 break;
 
             case 2:
