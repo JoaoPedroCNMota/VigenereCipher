@@ -5,10 +5,8 @@ public class VigenereUtils {
     public static final int ROWS = 26;
     public static final int COLS = 26;
 
-    private char[][] table;
-
-    public void vigenereTable(){
-        table = new char[ROWS][COLS];
+    public static char[][] vigenereTable(){
+        char[][] alphabeticalTable = new char[ROWS][COLS];
 
         for(int i = 0; i < ROWS; i++){
             for(int j = 0; j < COLS; j++){
@@ -17,9 +15,12 @@ public class VigenereUtils {
                     letter = letter - COLS;
                 }
                 letter = letter + COLS;
-                table[i][j] = (char)letter;
+                System.out.print((char)letter);
+                alphabeticalTable[i][j] = (char)letter;
             }
+            System.out.println();
         }
+        return alphabeticalTable;
     }
 
 }
