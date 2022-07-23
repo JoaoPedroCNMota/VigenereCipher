@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class VigenereLauncher {
 
-    private static Scanner scanner;
-    private static VigenereCore core;
+    private static Scanner scanner = new Scanner(System.in);
+    private static VigenereCore core = new VigenereCore();
 
     public static void main(String[] args) {
         int input;
@@ -18,7 +18,6 @@ public class VigenereLauncher {
 
     private static void init(){
         clearConsole();
-        scanner = new Scanner(System.in);
         System.out.println("=====================================================================");
         System.out.println("""
                 ░█▀▀░▀█▀░█▀▀░█▀▄░█▀█░█▀▄░█▀█░█▀▄    ░█░█░▀█▀░█▀▀░█▀▀░█▀█░█▀▀░█▀▄░█▀▀
@@ -41,12 +40,12 @@ public class VigenereLauncher {
     private static void getUserOption(int option){
         switch (option){
             case 1:
-                System.out.println("INSIRA A MENSAGEM A SER CIFRADA..");
-                String userMessage = scanner.nextLine();
-                System.out.println("INSIRA SUA CHAVE");
-                String userKey = scanner.nextLine();
-                core.encryt();
-                break;
+                System.out.println("INSIRA A MENSAGEM A SER CIFRADA.");
+                String userMessage = scanner.nextLine().toUpperCase();
+                System.out.println(userMessage);
+//                System.out.println("INSIRA SUA CHAVE.");
+//                String userKey = scanner.next().toUpperCase();
+//                System.out.println("MENSAGEM CIFRADA: " + core.encryt(userMessage, userKey));
 
             case 2:
                 System.out.println("DECIFRANDO..");
