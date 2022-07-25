@@ -45,11 +45,15 @@ public class VigenereLauncher {
             case 1:
                 while(userNavOption == "1"){
                     System.out.println("INSIRA A MENSAGEM A SER CIFRADA.");
-                    String userMessage = scanner.nextLine().toLowerCase();
-                    System.out.println("INSIRA SUA CHAVE.");
-                    String userKey = scanner.nextLine().toLowerCase();
-                    System.out.println("MENSAGEM CIFRADA: " + core.encryt(userMessage, userKey));
+                    String userMessage = scanner.nextLine().toUpperCase();
+
+                    System.out.println("INSIRA UMA SENHA.");
+                    String userKey = scanner.nextLine().toUpperCase();
+
                     System.out.println();
+                    System.out.println("MENSAGEM CIFRADA: \n" + core.encryt(userMessage, userKey));
+                    System.out.println();
+
                     System.out.println("=====================================================================");
                     System.out.println("1 - CIFRAR NOVA MENSAGEM");
                     System.out.println("=====================================================================");
@@ -62,11 +66,15 @@ public class VigenereLauncher {
             case 2:
                 while(userNavOption == "1"){
                     System.out.println("INSIRA A MENSAGEM CIFRADA.");
-                    String userMessage = scanner.nextLine();
-                    System.out.println("INSIRA A CHAVE DA MENSAGEM CIFRADA.");
-                    String userKey = scanner.nextLine();
-                    System.out.println("MENSAGEM DECIFRADA: " + core.encryt(userMessage, userKey));
+                    String encryptedMessage = scanner.nextLine().toUpperCase();
+
+                    System.out.println("INSIRA A SENHA DA MENSAGEM CIFRADA.");
+                    String messageKey = scanner.nextLine().toUpperCase();
+
                     System.out.println();
+                    System.out.println("MENSAGEM DECIFRADA: \n" + core.decrypt(encryptedMessage, messageKey));
+                    System.out.println();
+
                     System.out.println("=====================================================================");
                     System.out.println("1 - DECIFRAR NOVA MENSAGEM");
                     System.out.println("=====================================================================");
