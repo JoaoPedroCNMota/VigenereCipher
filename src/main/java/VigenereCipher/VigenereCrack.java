@@ -13,29 +13,40 @@ public class VigenereCrack {
             return null;
         }
 
-        List<String> trigrams = splitsEncryptedLetters(encryptedMessage.replaceAll("\\s", ""));
-        HashMap<String, Integer> trigramPositionCount = new HashMap<>();
+        String encryptedMessageWithoutSpaces = encryptedMessage.replaceAll("\\s", "").toUpperCase();
+        List<Integer> spacesPosition = getSpacesIndex(encryptedMessage);
+
+        List<String> trigrams = splitsEncryptedLetters(encryptedMessageWithoutSpaces);
+        HashMap<String, List<Integer>> trigramPositions = new HashMap<>();
 
         trigrams.forEach(tri -> {
             //verifica quantidade de aparicoes na cifra
             //incluindo a frequencia de aparicao (quantas casas anda ate aparecer denovo)
-
             //https://crypto-stackexchange-com.translate.goog/questions/73051/can-frequency-attack-be-successful-on-vigen%C3%A8re-cipher?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=wapp
-            if (encryptedMessage.contains(tri)){                                                    //"ABC"
-                trigramPositionCount.put(tri, encryptedMessage.indexOf(tri));
-            }
-            if (encryptedMessage.contains(tri.substring(0, 1) + " " + tri.substring(1))){ //"A_BC"
-                String seq = tri.substring(0, 1) + " " + tri.substring(1);
-                trigramPositionCount.put(tri, encryptedMessage.indexOf(seq));
-            }
-            if (encryptedMessage.contains(tri.substring(0, 2) + " " + tri.substring(2))){ //"AB_C"
-                String seq = tri.substring(0, 2) + " " + tri.substring(2);
-                trigramPositionCount.put(tri, encryptedMessage.indexOf(seq));
-            }
 
+            List<Integer> positions = new ArrayList<>();
+            int index = encryptedMessageWithoutSpaces.indexOf(tri);
+            while (index != -1){
+                positions.add(index);
+                index = encryptedMessageWithoutSpaces.indexOf(tri, index + 1);
+            }
+            if (positions.size() > 1){
+                List<Integer> calcPositions = calculatePositions(positions);
+                trigramPositions.put(tri, calcPositions);
+            }
         });
-        System.out.println(trigramPositionCount);
+
         return null;
+    }
+
+    private static List<Integer> calculatePositions(List<Integer> positions) {
+        List<Integer> calcPositions = new ArrayList<>();
+        for (int i = 0; i < positions.size(); i++) {
+            if (i < positions.size()){
+                calcPositions.add(positions.get(i + 1) - positions.get(i));
+            }
+        }
+        return calcPositions;
     }
 
     private static List<String> splitsEncryptedLetters(String encryptedMessage) {
@@ -46,11 +57,12 @@ public class VigenereCrack {
         return trigrams;
     }
 
-    public static void main(String[] args) {
-        attack("XPTGFY HGSJAKNXPT");
+    private static List<Integer> getSpacesIndex(String encryptedMessage) {
+        return  null;
     }
 
-
-
+    public static void main(String[] args) {
+        attack("Vyc qxgv gpdzfcdq pks yigimsp jm iaov tmbiivzlv foeygcxg erl exfhfpb mvgd ojbqmcw pgr uf rwth jlkpg pgzlvl qce scwstjrpgr vycb vzgrpar. O rimvkoodcg bg kucpeza rl tlgcpghm kjf udkyu ngia htrbxmwqeya tsukftmwe rls ewvvppkm hfpbl ou ncae ou dyiasorrxvon tmcvsrkq, ih qqdkjgwerrt mvg nyn mvck yc tzifpxmvo nmgdg ceb ih qqetxgqg r pttrgi rwth vyc gxgwcrh pwnc zt vcticrm");
+    }
 
 }
