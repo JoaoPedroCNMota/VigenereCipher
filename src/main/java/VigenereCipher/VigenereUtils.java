@@ -1,8 +1,32 @@
 package VigenereCipher;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class VigenereUtils {
+
+    public static String inicialFormat(String message){
+        return message.replaceAll("[^a-zA-Z ]", "")
+                .toUpperCase();
+    }
+
+    public static String formatMessage(String message){
+        return message.replaceAll("[^a-zA-Z ]", "")
+                .replaceAll("\\s", "")
+                .toUpperCase();
+    }
+
+    public static List<Integer> getSpacesIndex(String encryptedMessage) {
+        List<Integer> spacesIndex = new ArrayList<>();
+        int index = encryptedMessage.indexOf(" ");
+        while (index != -1){
+            spacesIndex.add(index);
+            index = encryptedMessage.indexOf(" ", index + 1);
+        }
+        return spacesIndex;
+    }
+
     public static HashMap<String, Double> getEnglishFrequencyLetters (){
         HashMap<String, Double> charMap = new HashMap<>();
         charMap.put("A", 8.167);
@@ -65,5 +89,35 @@ public class VigenereUtils {
         return charMap;
     };
 
+    public static HashMap<String, Double> frequencyLetters (){
+        HashMap<String, Double> charMap = new HashMap<>();
+        charMap.put("A", 0.0);
+        charMap.put("B", 0.0);
+        charMap.put("C", 0.0);
+        charMap.put("D", 0.0);
+        charMap.put("E", 0.0);
+        charMap.put("F", 0.0);
+        charMap.put("G", 0.0);
+        charMap.put("H", 0.0);
+        charMap.put("I", 0.0);
+        charMap.put("J", 0.0);
+        charMap.put("K", 0.0);
+        charMap.put("L", 0.0);
+        charMap.put("M", 0.0);
+        charMap.put("N", 0.0);
+        charMap.put("O", 0.0);
+        charMap.put("P", 0.0);
+        charMap.put("Q", 0.0);
+        charMap.put("R", 0.0);
+        charMap.put("S", 0.0);
+        charMap.put("T", 0.0);
+        charMap.put("U", 0.0);
+        charMap.put("V", 0.0);
+        charMap.put("W", 0.0);
+        charMap.put("X", 0.0);
+        charMap.put("Y", 0.0);
+        charMap.put("Z", 0.0);
+        return charMap;
+    };
 
 }
