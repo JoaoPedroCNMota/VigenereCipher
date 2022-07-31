@@ -21,6 +21,8 @@ public class VigenereCore {
             // http://sticksandstones.kstrom.com/appen.html
             encryptedChar += 65;
 
+
+
             encryptedMessage.append((char) encryptedChar);
         }
 
